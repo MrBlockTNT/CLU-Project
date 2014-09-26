@@ -1,4 +1,7 @@
 CLU-Project
 ===========
 
-CLU is a shell which the french acronym means CLU Logiciel Utilitaire. In the future, CLU will be able to manage your computer.
+This is the CLU project
+
+This is the property of Drac0nis Systems
+Copyright © Drac0nis Systems. All rights reserved.
