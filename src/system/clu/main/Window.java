@@ -96,7 +96,7 @@ public class Window extends JFrame implements ComponentListener
         gbc.anchor = GridBagConstraints.BASELINE_TRAILING;
         gbc.insets = new Insets(10, 10, 10, 0);
         panel.add(control, gbc);
-		
+        
         this.addComponentListener(this);
 		this.setContentPane(panel);
 		this.setTitle(name);
