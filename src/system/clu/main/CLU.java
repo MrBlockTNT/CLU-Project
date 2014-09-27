@@ -3,14 +3,18 @@ package system.clu.main;
 import java.awt.Color;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import system.clu.crash.CrashReport;
 import system.clu.misc.Save;
 import system.clu.recognize.Recognizer;
 import system.clu.web.Download;
@@ -19,6 +23,19 @@ public class CLU
 {
 	/*
 	 * Runtime et processus (start/stop)
+	 */
+	
+	/*
+	 * CrashReport.generateFile();
+	   try
+	   {
+	   e.printStackTrace(new PrintStream(CrashReport.fileName));
+	   } catch (FileNotFoundException e1)
+	   {
+		   e1.printStackTrace();
+	   }
+	 * 
+	 * 
 	 */
 	
 	static Window window;
@@ -32,43 +49,72 @@ public class CLU
 		File asset3 = new File("assets/clu.jpg");
 		File html = new File("html/");
 		File logs = new File("logs/");
-		if(!asset1.exists() || !asset2.exists() || !asset3.exists() || !html.exists() || !logs.exists())
+		File crashs = new File("crash-reports/");
+		if(!asset1.exists() || !asset2.exists() || !asset3.exists() || !html.exists() || !logs.exists() || !crashs.exists())
 		{
 			Initializing init = new Initializing();
 			init.setValue(1);
-			if(!asset2.exists() || !asset3.exists())
-			{
-				try{
-					Thread.sleep(500);
-				} catch(Exception e){e.printStackTrace();}
-				init.setValue(13);
-				Download.downloadFile("http://clu-project.esy.es/assets/button.png");
-				init.setValue(38);
-				try{
-					Thread.sleep(500);
-				} catch(Exception e){e.printStackTrace();}
-				init.setValue(43);
-				Download.downloadFile("http://clu-project.esy.es/assets/clu.jpg");
-			}
-			init.setValue(67);
 			if(!asset1.exists())
 			{
 				asset1.mkdir();
 			}
+			init.setValue(13);
+			if(!asset2.exists() || !asset3.exists())
+			{
+				try{
+					Thread.sleep(500);
+				} catch(Exception e){CrashReport.generateFile();
+				try
+				{
+					e.printStackTrace(new PrintStream(CrashReport.fileName));
+				} catch (FileNotFoundException e1)
+				{
+					e1.printStackTrace();
+				}}
+				init.setValue(38);
+				Download.downloadFile("http://clu-project.esy.es/assets/button.png");
+				init.setValue(43);
+				try{
+					Thread.sleep(500);
+				} catch(Exception e){CrashReport.generateFile();
+				try
+				{
+					e.printStackTrace(new PrintStream(CrashReport.fileName));
+				} catch (FileNotFoundException e1)
+				{
+					e1.printStackTrace();
+				}}
+				init.setValue(67);
+				Download.downloadFile("http://clu-project.esy.es/assets/clu.jpg");
+			}
 			init.setValue(73);
 			if(!html.exists())
 			{
-				asset1.mkdir();
+				html.mkdir();
 			}
 			init.setValue(86);
 			if(!logs.exists())
 			{
 				logs.mkdir();
 			}
+			init.setValue(93);
+			if(!crashs.exists())
+			{
+				crashs.mkdir();
+			}
 			init.setValue(100);
 			try{
 				Thread.sleep(350);
-			} catch(Exception e){e.printStackTrace();}
+			} catch(Exception e)
+			{
+				CrashReport.generateFile();
+			try
+			{
+				e.printStackTrace(new PrintStream(CrashReport.fileName));
+			} catch (FileNotFoundException e1)
+			{
+				e1.printStackTrace();
+			}}
 			init.dispose();
 		}
 		Calendar c = Calendar.getInstance();
@@ -79,7 +125,14 @@ public class CLU
 			log.createNewFile();
 		} catch (IOException e)
 		{
-			e.printStackTrace();
+			CrashReport.generateFile();
+			try
+			{
+				e.printStackTrace(new PrintStream(CrashReport.fileName));
+			} catch (FileNotFoundException e1)
+			{
+				e1.printStackTrace();
+			}
 		}
 		//runtime.addShutdownHook(new ThreadShutdown());
 		window = new Window("C.L.U.", 900, 706, null, JFrame.EXIT_ON_CLOSE, true, Color.WHITE, false);
@@ -163,7 +216,14 @@ public class CLU
 						Thread.sleep(1000);
 					} catch (InterruptedException e)
 					{
-						e.printStackTrace();
+						CrashReport.generateFile();
+						try
+						{
+							e.printStackTrace(new PrintStream(CrashReport.fileName));
+						} catch (FileNotFoundException e1)
+						{
+							e1.printStackTrace();
+						}
 					}
 					out("Fermeture du Sytème dans : 2s");
 					try
@@ -171,7 +231,14 @@ public class CLU
 						Thread.sleep(1000);
 					} catch (InterruptedException e)
 					{
-						e.printStackTrace();
+						CrashReport.generateFile();
+						try
+						{
+							e.printStackTrace(new PrintStream(CrashReport.fileName));
+						} catch (FileNotFoundException e1)
+						{
+							e1.printStackTrace();
+						}
 					}
 					out("Fermeture du Sytème dans : 1s");
 					try
@@ -179,7 +246,14 @@ public class CLU
 						Thread.sleep(1000);
 					} catch (InterruptedException e)
 					{
-						e.printStackTrace();
+						CrashReport.generateFile();
+						try
+						{
+							e.printStackTrace(new PrintStream(CrashReport.fileName));
+						} catch (FileNotFoundException e1)
+						{
+							e1.printStackTrace();
+						}
 					}
 					out("Fermeture du Sytème. C.L.U. : Désactivé");
 					try
@@ -187,7 +261,14 @@ public class CLU
 						Thread.sleep(10);
 					} catch (InterruptedException e)
 					{
-						e.printStackTrace();
+						CrashReport.generateFile();
+						try
+						{
+							e.printStackTrace(new PrintStream(CrashReport.fileName));
+						} catch (FileNotFoundException e1)
+						{
+							e1.printStackTrace();
+						}
 					}
 					window.dispose();
 					break;
@@ -203,7 +284,14 @@ public class CLU
 					try {
 						Thread.sleep(500);
 					} catch (InterruptedException e) {
-						e.printStackTrace();
+						CrashReport.generateFile();
+						try
+						{
+							e.printStackTrace(new PrintStream(CrashReport.fileName));
+						} catch (FileNotFoundException e1)
+						{
+							e1.printStackTrace();
+						}
 					}
 					HTMLEditor html = new HTMLEditor();
 					break;
@@ -238,9 +326,16 @@ public class CLU
 			output.flush();
 			output.close();
 		}
-		catch(IOException ioe)
+		catch(IOException e)
 		{
-			ioe.printStackTrace();
+			CrashReport.generateFile();
+			try
+			{
+				e.printStackTrace(new PrintStream(CrashReport.fileName));
+			} catch (FileNotFoundException e1)
+			{
+				e1.printStackTrace();
+			}
 		}
 		Window.resetTextInput();
 	}
@@ -257,7 +352,14 @@ class ThreadShutdown extends Thread
 			sleep(1000);
 		} catch (InterruptedException e)
 		{
-			e.printStackTrace();
+			CrashReport.generateFile();
+			try
+			{
+				e.printStackTrace(new PrintStream(CrashReport.fileName));
+			} catch (FileNotFoundException e1)
+			{
+				e1.printStackTrace();
+			}
 		}
 		CLU.out("Arrêt système dans : 2s");
 		try
@@ -265,7 +367,14 @@ class ThreadShutdown extends Thread
 			sleep(1000);
 		} catch (InterruptedException e)
 		{
-			e.printStackTrace();
+			CrashReport.generateFile();
+			try
+			{
+				e.printStackTrace(new PrintStream(CrashReport.fileName));
+			} catch (FileNotFoundException e1)
+			{
+				e1.printStackTrace();
+			}
 		}
 		CLU.out("Arrêt système dans : 1s");
 		try
@@ -273,7 +382,14 @@ class ThreadShutdown extends Thread
 			sleep(1000);
 		} catch (InterruptedException e)
 		{
-			e.printStackTrace();
+			CrashReport.generateFile();
+			try
+			{
+				e.printStackTrace(new PrintStream(CrashReport.fileName));
+			} catch (FileNotFoundException e1)
+			{
+				e1.printStackTrace();
+			}
 		}
 		CLU.out("Arrêt système.");
 	}

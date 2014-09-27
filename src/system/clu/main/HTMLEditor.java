@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintStream;
+import java.io.PrintWriter;
 
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
@@ -13,6 +15,8 @@ import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.text.html.HTMLEditorKit;
+
+import system.clu.crash.CrashReport;
 
 public class HTMLEditor extends JFrame
 {
@@ -47,11 +51,25 @@ public class HTMLEditor extends JFrame
 	        } 
 	        catch (FileNotFoundException e1)
 	        {
-	          e1.printStackTrace();
+	        	CrashReport.generateFile();
+	     	   try
+	     	   {
+	     		  e1.printStackTrace(new PrintStream(CrashReport.fileName));
+	     	   } catch (FileNotFoundException e2)
+	     	   {
+	     		   e2.printStackTrace();
+	     	   }
 	        }
 	        catch (IOException e1) 
 	        {
-	          e1.printStackTrace();
+	        	CrashReport.generateFile();
+	     	   try
+	     	   {
+	     		  e1.printStackTrace(new PrintStream(CrashReport.fileName));
+	     	   } catch (FileNotFoundException e2)
+	     	   {
+	     		   e2.printStackTrace();
+	     	   }
 	        }
 	        try 
 	        {
@@ -61,7 +79,14 @@ public class HTMLEditor extends JFrame
 	        } 
 	        catch (IOException e1) 
 	        {
-	          e1.printStackTrace();
+	        	CrashReport.generateFile();
+	     	   try
+	     	   {
+	     		  e1.printStackTrace(new PrintStream(CrashReport.fileName));
+	     	   } catch (FileNotFoundException e2)
+	     	   {
+	     		   e2.printStackTrace();
+	     	   }
 	        }             
 	      }            
 	    });

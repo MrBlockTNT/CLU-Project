@@ -7,9 +7,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.PrintStream;
+import java.io.PrintWriter;
 
-import javax.swing.JOptionPane;
-
+import system.clu.crash.CrashReport;
 import system.clu.main.CLU;
 
 public class Save
@@ -167,7 +168,14 @@ class ThreadSave extends Thread
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			CrashReport.generateFile();
+			   try
+			   {
+				   e.printStackTrace(new PrintStream(CrashReport.fileName));
+			   } catch (FileNotFoundException e1)
+			   {
+				   e1.printStackTrace();
+			   }
 		}
     	CLU.out("[Sauvegarde] Tout s'est déroulé correctement !");
     	this.stop();

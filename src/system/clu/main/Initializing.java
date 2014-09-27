@@ -1,12 +1,14 @@
 package system.clu.main;
 
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
+import java.io.PrintWriter;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JProgressBar;
+
+import system.clu.crash.CrashReport;
 
 public class Initializing extends JFrame 
 {
@@ -47,7 +49,14 @@ public class Initializing extends JFrame
 			} 
 	    	catch (InterruptedException e)
 			{
-				e.printStackTrace();
+	    		CrashReport.generateFile();
+	    		   try
+	    		   {
+	    			   e.printStackTrace(new PrintStream(CrashReport.fileName));
+	    		   } catch (FileNotFoundException e1)
+	    		   {
+	    			   e1.printStackTrace();
+	    		   }
 			}
 	      }
 	    }   

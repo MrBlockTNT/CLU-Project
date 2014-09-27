@@ -1,10 +1,15 @@
 package system.clu.web;
 
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.net.URLConnection;
+
+import system.clu.crash.CrashReport;
 
 public class Download
 {
@@ -29,7 +34,14 @@ public class Download
 			writeFile.flush();
 		} catch (Exception e)
 		{
-			e.printStackTrace();
+			CrashReport.generateFile();
+			   try
+			   {
+				   e.printStackTrace(new PrintStream(CrashReport.fileName));
+			   } catch (FileNotFoundException e1)
+			   {
+				   e1.printStackTrace();
+			   }
 		}
 		finally
 		{
@@ -40,7 +52,14 @@ public class Download
             }
             catch (IOException e)
             {
-                e.printStackTrace();
+            	CrashReport.generateFile();
+         	   try
+         	   {
+         		  e.printStackTrace(new PrintStream(CrashReport.fileName));
+         	   } catch (FileNotFoundException e1)
+         	   {
+         		   e1.printStackTrace();
+         	   }
             }
 		}
 	}

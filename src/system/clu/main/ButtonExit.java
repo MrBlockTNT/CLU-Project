@@ -8,40 +8,31 @@ import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintStream;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-import system.clu.crash.CrashReport;
-
-public class Button extends JButton implements MouseListener
+public class ButtonExit extends JButton implements MouseListener
 {
 	private String name;
 	private Image img;
-	public Button(String name)
+	public ButtonExit(String name)
 	{
 		super(name);
 		this.name = name;
-		try
+		/*try
 		{
 			img = ImageIO.read(new File("assets/button.png"));
 		}
 		catch(Exception e)
 		{
-			CrashReport.generateFile();
-			   try
-			   {
-			   e.printStackTrace(new PrintStream(CrashReport.fileName));
-			   } catch (FileNotFoundException e1)
-			   {
-				   e1.printStackTrace();
-			   }
+			e.printStackTrace();
 			CLU.error.showMessageDialog(null, "Erreur", "Erreur", JOptionPane.ERROR_MESSAGE);
-		}
+		}*/
+		this.setBackground(Color.BLACK);
+		this.setOpaque(false);
 		this.addMouseListener(this);
 	}
 	

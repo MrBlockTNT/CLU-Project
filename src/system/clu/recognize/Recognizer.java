@@ -1,7 +1,12 @@
 package system.clu.recognize;
 
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
+import java.io.PrintWriter;
+
 import javax.swing.JOptionPane;
 
+import system.clu.crash.CrashReport;
 import system.clu.main.CLU;
 
 public class Recognizer
@@ -67,8 +72,16 @@ public class Recognizer
 				return 2147483647;
 			}
 		}
-		catch(Exception ex)
+		catch(Exception e)
 		{
+			CrashReport.generateFile();
+			   try
+			   {
+				   e.printStackTrace(new PrintStream(CrashReport.fileName));
+			   } catch (FileNotFoundException e1)
+			   {
+				   e1.printStackTrace();
+			   }
 			CLU.error.showMessageDialog(null, "Erreur durant l'analyse", "Erreur", JOptionPane.ERROR_MESSAGE);
 			return 0;
 		}
