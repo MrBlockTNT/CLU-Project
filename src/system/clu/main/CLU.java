@@ -313,6 +313,71 @@ public class CLU
 				case 13:
 					out(runtime.maxMemory() + " Octets sont alloués par la JVM.");
 					break;
+				case 14:
+					/*ProcessBuilder processbuilder = new ProcessBuilder("C:\\CLU\\CLU.jar");
+					Process process = null;
+					try
+					{
+						process = processbuilder.start();
+					} catch (IOException e)
+					{
+						e.printStackTrace();
+					}
+					process.destroy();*/
+					out("En construction");
+					break;
+				case 15:
+					out("En construction");
+					break;
+				case 16:
+					out(runtime.totalMemory() + " Octets sont alloués à la JVM");
+					break;
+				case 17:
+					runtime.halt(0);
+					break;
+				case 18:
+					out(runtime.freeMemory() + " Octets sont utilisés par la JVM.");
+					out("Garbage Collector activated !");
+					runtime.gc();
+					out("Garbage Collector terminated !");
+					try
+					{
+						Thread.sleep(1000);
+					} catch (InterruptedException e)
+					{
+						CrashReport.generateFile();
+						try
+						{
+							e.printStackTrace(new PrintStream(CrashReport.fileName));
+						} catch (FileNotFoundException e1)
+						{
+							e1.printStackTrace();
+						}
+					}
+					out(runtime.freeMemory() + " Octets sont utilisés par la JVM.");
+					break;
+				case 19:
+					out(runtime.availableProcessors() + " coeurs sont alloués à la JVM");
+					break;
+				case 20:
+					ProcessBuilder pb = new ProcessBuilder("C:\\Windows\\cmd.exe");
+					Process p = null;
+					try
+					{
+						p = pb.start();
+					}
+					catch(Exception e)
+					{
+						CrashReport.generateFile();
+						try
+						{
+							e.printStackTrace(new PrintStream(CrashReport.fileName));
+						} catch (FileNotFoundException e1)
+						{
+							e1.printStackTrace();
+						}
+					}
+					break;
 				default:
 					out("Je n'ai pas compris. Attention aux fautes d'orthographe.");
 			}

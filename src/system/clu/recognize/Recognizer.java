@@ -27,7 +27,7 @@ public class Recognizer
 			{
 				return 3;
 			}
-			else if(text.contains("STOP"))
+			else if(text.contains("CLOSE"))
 			{
 				return 4;
 			}
@@ -63,9 +63,37 @@ public class Recognizer
 			{
 				return 12;
 			}
-			else if(text.contains("COMBIEN") && (text.contains("MEMOIRE") || text.contains("MÉMOIRE") && text.contains("JVM") && text.contains("MAX")))
+			else if(text.contains("COMBIEN") && (text.contains("MEMOIRE") || text.contains("MÉMOIRE") && text.contains("JVM") && text.contains("MAX") && text.contains("APPLICATION")))
 			{
 				return 13;
+			}
+			else if(text.contains("STOP") && text.contains("PROCESS"))
+			{
+				return 14;
+			}
+			else if(text.contains("START") && text.contains("PROCESS"))
+			{
+				return 15;
+			}
+			else if(text.contains("COMBIEN") && (text.contains("MEMOIRE") || text.contains("MÉMOIRE") && text.contains("JVM") && text.contains("MAX")))
+			{
+				return 16;
+			}
+			else if(text.contains("STOP") && text.contains("JVM"))
+			{
+				return 17;
+			}
+			else if(text.contains("GARBAGE COLLECTOR"))
+			{
+				return 18;
+			}
+			else if(text.contains("COMBIEN") && text.contains("COEURS") && text.contains("JVM"))
+			{
+				return 19;
+			}
+			else if(text.contains("CMD") && text.contains("WINDOWS"))
+			{
+				return 20;
 			}
 			else 
 			{
