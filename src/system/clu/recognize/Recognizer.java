@@ -1,4 +1,4 @@
-package system.clu.recognize;
+﻿package system.clu.recognize;
 
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
@@ -103,13 +103,13 @@ public class Recognizer
 		catch(Exception e)
 		{
 			CrashReport.generateFile();
-			   try
-			   {
-				   e.printStackTrace(new PrintStream(CrashReport.fileName));
-			   } catch (FileNotFoundException e1)
-			   {
-				   e1.printStackTrace();
-			   }
+			try
+			{
+				e.printStackTrace(new PrintStream(CrashReport.fileName));
+			} catch (FileNotFoundException e1)
+			{    
+				e1.printStackTrace();
+			}
 			CLU.error.showMessageDialog(null, "Erreur durant l'analyse", "Erreur", JOptionPane.ERROR_MESSAGE);
 			return 0;
 		}

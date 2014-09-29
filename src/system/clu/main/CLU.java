@@ -1,11 +1,13 @@
-package system.clu.main;
+ï»¿package system.clu.main;
 
 import java.awt.Color;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.Calendar;
@@ -145,7 +147,7 @@ public class CLU
 	
 	public static void getSystemInfo()
 	{
-		out("Récupération des infos système...");
+		out("RÃ©cupÃ©ration des infos systÃ¨me...");
 		String osName;
 		String osVersion;
 		String osArch;
@@ -157,7 +159,7 @@ public class CLU
 		javaVersion = System.getProperty("java.version");
 		javaVersionType = System.getProperty("sun.arch.data.model");
 		out("Votre OS est : " + osName + " " + osVersion + " " + osArch);
-		out("Votre version de Java™ SE est " + javaVersion + " " + javaVersionType + " bits");
+		out("Votre version de Javaâ„¢ SE est " + javaVersion + " " + javaVersionType + " bits");
 	}
 	
 	public static void analyse(String input)
@@ -170,7 +172,7 @@ public class CLU
 			if(Save.dirIn == "" && Save.dirOut == "")
 			{
 				Save.dirIn = input;
-				out("Veuillez spécifier un chemin de sortie :");
+				out("Veuillez spÃ©cifier un chemin de sortie :");
 			}
 			else if(Save.dirIn != "" && Save.dirOut == "")
 			{
@@ -198,19 +200,19 @@ public class CLU
 					out("Je suis C.L.U., Programme Utilitaire de Gestion (C.L.U. Logiciel Utilitaire).\nDroits : GESTION");
 					break;
 				case 2:
-					String name1 = System.getProperty("user.name") + ", invité.\nDroits : AUCUN";
+					String name1 = System.getProperty("user.name") + ", invitÃ©.\nDroits : AUCUN";
 					if(System.getProperty("user.name") == "Thierry")
 					{
-						name1 = "Romain, maître du système.\nDroits : DIEU";
+						name1 = "Romain, maitre du systÃ¨me.\nDroits : DIEU";
 					}
 					out("Tu est " + name1);
 					out(System.getProperty("user.name"));
 					break;
 				case 3:
-					out("RINZLER, Programme de Défense du Système.\nDroits : PROTECTION");
+					out("RINZLER, Programme de DÃ©fense du SystÃ¨me.\nDroits : PROTECTION");
 					break;
 				case 4:
-					out("Fermeture du Sytème dans : 3s");
+					out("Fermeture du SytÃ¨me dans : 3s");
 					try
 					{
 						Thread.sleep(1000);
@@ -225,7 +227,7 @@ public class CLU
 							e1.printStackTrace();
 						}
 					}
-					out("Fermeture du Sytème dans : 2s");
+					out("Fermeture du SytÃ¨me dans : 2s");
 					try
 					{
 						Thread.sleep(1000);
@@ -240,7 +242,7 @@ public class CLU
 							e1.printStackTrace();
 						}
 					}
-					out("Fermeture du Sytème dans : 1s");
+					out("Fermeture du SytÃ¨me dans : 1s");
 					try
 					{
 						Thread.sleep(1000);
@@ -255,7 +257,7 @@ public class CLU
 							e1.printStackTrace();
 						}
 					}
-					out("Fermeture du Sytème. C.L.U. : Désactivé");
+					out("Fermeture du SytÃ¨me. C.L.U. : Dï¿½sactivï¿½");
 					try
 					{
 						Thread.sleep(10);
@@ -273,14 +275,14 @@ public class CLU
 					window.dispose();
 					break;
 				case 5 :
-					CLU.out("Veuillez spécifier un chemin d'entrée :");
+					CLU.out("Veuillez spÃ©cifier un chemin d'entrï¿½e :");
 					Save.isSaving = true;
 					break;
 				case 6:
 					getSystemInfo();
 					break;
 				case 7:
-					out("Ouverture de l'éditeur HTML.");
+					out("Ouverture de l'Ã©diteur HTML.");
 					try {
 						Thread.sleep(500);
 					} catch (InterruptedException e) {
@@ -308,10 +310,10 @@ public class CLU
 					out(new Date().toString());
 					break;
 				case 12:
-					out(runtime.freeMemory() + " Octets sont utilisés par la JVM.");
+					out(runtime.freeMemory() + " Octets sont utilisÃ©s par la JVM.");
 					break;
 				case 13:
-					out(runtime.maxMemory() + " Octets sont alloués par la JVM.");
+					out(runtime.maxMemory() + " Octets sont allouÃ©s par la JVM.");
 					break;
 				case 14:
 					/*ProcessBuilder processbuilder = new ProcessBuilder("C:\\CLU\\CLU.jar");
@@ -330,13 +332,13 @@ public class CLU
 					out("En construction");
 					break;
 				case 16:
-					out(runtime.totalMemory() + " Octets sont alloués à la JVM");
+					out(runtime.totalMemory() + " Octets sont allouÃ©s Ã  la JVM");
 					break;
 				case 17:
 					runtime.halt(0);
 					break;
 				case 18:
-					out(runtime.freeMemory() + " Octets sont utilisés par la JVM.");
+					out(runtime.freeMemory() + " Octets sont utilisÃ©s par la JVM.");
 					out("Garbage Collector activated !");
 					runtime.gc();
 					out("Garbage Collector terminated !");
@@ -354,28 +356,20 @@ public class CLU
 							e1.printStackTrace();
 						}
 					}
-					out(runtime.freeMemory() + " Octets sont utilisés par la JVM.");
+					out(runtime.freeMemory() + " Octets sont utilisÃ©s par la JVM.");
 					break;
 				case 19:
-					out(runtime.availableProcessors() + " coeurs sont alloués à la JVM");
+					out(runtime.availableProcessors() + " coeurs sont allouÃ©s Ã  la JVM");
 					break;
 				case 20:
-					ProcessBuilder pb = new ProcessBuilder("C:\\Windows\\cmd.exe");
-					Process p = null;
-					try
-					{
-						p = pb.start();
-					}
-					catch(Exception e)
-					{
-						CrashReport.generateFile();
-						try
-						{
-							e.printStackTrace(new PrintStream(CrashReport.fileName));
-						} catch (FileNotFoundException e1)
-						{
-							e1.printStackTrace();
-						}
+					final String os = System.getProperty("os.name");
+			        if (os.contains("Windows"))
+			        {
+						/*ThreadRun tr = new ThreadRun();
+						tr.setDir("cmd.exe");
+						tr.setExecutionEnvrironment("C:\\Windows\\System32\\");
+						tr.start();*/
+						RunExternal.launch("C://WINDOWS//system32//cmd.exe");
 					}
 					break;
 				default:
@@ -411,7 +405,7 @@ class ThreadShutdown extends Thread
 	@Override
 	public void run()
 	{
-		CLU.out("Arrêt système dans : 3s");
+		CLU.out("ArrÃªt systÃ¨me dans : 3s");
 		try
 		{
 			sleep(1000);
@@ -426,7 +420,7 @@ class ThreadShutdown extends Thread
 				e1.printStackTrace();
 			}
 		}
-		CLU.out("Arrêt système dans : 2s");
+		CLU.out("ArrÃªt systÃ¨me dans : 2s");
 		try
 		{
 			sleep(1000);
@@ -441,7 +435,7 @@ class ThreadShutdown extends Thread
 				e1.printStackTrace();
 			}
 		}
-		CLU.out("Arrêt système dans : 1s");
+		CLU.out("ArrÃªt systÃ¨me dans : 1s");
 		try
 		{
 			sleep(1000);
@@ -456,6 +450,84 @@ class ThreadShutdown extends Thread
 				e1.printStackTrace();
 			}
 		}
-		CLU.out("Arrêt système.");
+		CLU.out("ArrÃªt systÃ¨me.");
 	}
+}
+
+class ThreadRun extends Thread
+{
+	private String dir = "";
+	private String exenv = "";
+	@Override
+	public void run()
+	{
+		try
+		{
+			Runtime runtime = Runtime.getRuntime();
+			Process process = runtime.exec(new String[]{"C:/Windows/System32/cmd.exe"}/*, null, new File(exenv)*/);
+			CLU.out(String.valueOf(process.isAlive()));
+			CLU.out(process.toString());
+		}
+		catch(Exception e)
+		{
+			CrashReport.generateFile();
+			try
+			{
+				e.printStackTrace(new PrintStream(CrashReport.fileName));
+			} catch (FileNotFoundException e1)
+			{
+				e1.printStackTrace();
+			}
+		}
+	}
+  
+	public void setDir(String dir)
+	{
+		this.dir = dir;
+	}
+	
+	public void setExecutionEnvrironment(String env)
+	{
+		this.exenv = env;
+	}
+}
+
+class RunExternal 
+{
+    public static void launch(String command) 
+    {
+        try 
+        {
+            Runtime runtime = Runtime.getRuntime();
+            Process process = runtime.exec(command);
+            BufferedReader input = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String line = null;
+            while ((line = input.readLine()) != null) {
+                System.out.println(line);
+            }
+            //Attendre la fin de l'execution
+            if (process.waitFor() != 0) {
+                System.out.println("Une erreur est survenue ");
+            }
+        } catch (InterruptedException ex) {
+        	CrashReport.generateFile();
+			try
+			{
+				ex.printStackTrace(new PrintStream(CrashReport.fileName));
+			} catch (FileNotFoundException e1)
+			{
+				e1.printStackTrace();
+			}
+        } catch (IOException ex) 
+        {
+        	CrashReport.generateFile();
+			try
+			{
+				ex.printStackTrace(new PrintStream(CrashReport.fileName));
+			} catch (FileNotFoundException e1)
+			{
+				e1.printStackTrace();
+			}
+        }
+    }
 }
